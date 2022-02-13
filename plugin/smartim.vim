@@ -56,7 +56,7 @@ call Smartim_start_debug()
 function! Smartim_SelectDefault()
   call Smartim_debug_print('>>> Smartim_SelectDefault')
 
-  if g:smartim_disable == 1
+  if g:smartim_disable == 1 || reg_recording() != '' || reg_executing() != ''
     return
   endif
 
@@ -65,12 +65,13 @@ function! Smartim_SelectDefault()
 
   call Smartim_debug_print('b:saved_im = ' . b:saved_im)
   call Smartim_debug_print('<<< Smartim_SelectDefault returned ' . v:shell_error)
+
 endfunction
 
 function! Smartim_SelectSaved()
   call Smartim_debug_print('>>> Smartim_SelectSaved')
 
-  if g:smartim_disable == 1
+  if g:smartim_disable == 1 || reg_recording() != '' || reg_executing() != ''
     return
   endif
 
@@ -81,6 +82,7 @@ function! Smartim_SelectSaved()
   else
     call Smartim_debug_print('<<< Smartim_SelectSaved returned')
   endif
+
 endfunction
 
 augroup smartim
